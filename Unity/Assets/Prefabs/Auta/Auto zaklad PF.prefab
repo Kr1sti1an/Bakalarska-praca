@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: -7034443444020792498}
   - component: {fileID: -2935821195695963426}
   - component: {fileID: -5227736932658671179}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: car_police_wheel_rear_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,8 @@ GameObject:
   - component: {fileID: -4463330163902868123}
   - component: {fileID: -2059514980741358861}
   - component: {fileID: 2820680254112994179}
-  m_Layer: 0
+  - component: {fileID: 6831474329817881476}
+  m_Layer: 7
   m_Name: auto_hrac
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,6 +177,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6831474329817881476
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: -7616419905788280476}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5114910698346790811, guid: 49a7e7a87d66346a890daede8f94a018, type: 3}
 --- !u!1 &-6681562467930313874
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,7 +210,7 @@ GameObject:
   - component: {fileID: 1582373561863446594}
   - component: {fileID: 7031023820804532572}
   - component: {fileID: 2973605979414164730}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: car_police_wheel_rear_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +328,7 @@ GameObject:
   - component: {fileID: 92933507320965445}
   - component: {fileID: -3955727910618707537}
   - component: {fileID: 2601081121572127956}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: auto_hrac.Pravy.Predok
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +414,7 @@ GameObject:
   - component: {fileID: 5596523298947233218}
   - component: {fileID: 7714657081821830603}
   - component: {fileID: -5133339588814296377}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: car_police_wheel_front_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,7 +498,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: -8679921383154817045}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: auto_hrac
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,7 +536,7 @@ GameObject:
   - component: {fileID: 4603479945094268743}
   - component: {fileID: -3477180378319541784}
   - component: {fileID: 3243276668533790656}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: auto_hrac.Pravy.Zadok
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +622,7 @@ GameObject:
   - component: {fileID: 4430265093482974651}
   - component: {fileID: -7326903790733204519}
   - component: {fileID: -8863043668621682242}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: auto_hrac.Lavy.Zadok
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -685,7 +708,7 @@ GameObject:
   - component: {fileID: -6928749472288105717}
   - component: {fileID: -3431488013816642553}
   - component: {fileID: 1626944555574703967}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: car_police_wheel_front_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -772,6 +795,7 @@ GameObject:
   - component: {fileID: 598235753114331236}
   - component: {fileID: 8117741849020929495}
   - component: {fileID: 6591310982777428777}
+  - component: {fileID: 5485939295604706506}
   m_Layer: 7
   m_Name: Auto zaklad PF
   m_TagString: Player
@@ -837,6 +861,7 @@ MonoBehaviour:
   rb: {fileID: 598235753114331236}
   hernyModel: {fileID: 4575023317522592104}
   autoSietovyCitac: {fileID: 2820680254112994179}
+  vybuchManazer: {fileID: 0}
 --- !u!114 &6591310982777428777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -850,6 +875,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoManazer: {fileID: 8117741849020929495}
+--- !u!114 &5485939295604706506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5432170313893576087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178c3d0a7d4264d31afa1e7e1ebcd461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoManazer: {fileID: 8117741849020929495}
+  ostatneAutaLayerMaska:
+    serializedVersion: 2
+    m_Bits: 128
+  meshCollider: {fileID: 6831474329817881476}
 --- !u!1 &8731319315514314945
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,7 +903,7 @@ GameObject:
   - component: {fileID: 3608042215461682980}
   - component: {fileID: 7038381997068530555}
   - component: {fileID: 5932299959692326848}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: auto_hrac.Lavy.Predok
   m_TagString: Untagged
   m_Icon: {fileID: 0}

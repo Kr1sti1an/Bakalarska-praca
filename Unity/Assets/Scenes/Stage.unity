@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
   - component: {fileID: 330585549}
+  - component: {fileID: 330585550}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -311,6 +312,23 @@ MonoBehaviour:
   - {fileID: 3178284415263986907, guid: 7e5248d51a5c3432f8d347c9ae27fae8, type: 3}
   - {fileID: 3178284415263986907, guid: 7e5248d51a5c3432f8d347c9ae27fae8, type: 3}
   - {fileID: 3178284415263986907, guid: 7e5248d51a5c3432f8d347c9ae27fae8, type: 3}
+--- !u!114 &330585550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbc04663c4c7e4263bcb5d4aa680f7d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoAIPrefaby:
+  - {fileID: 5874265540006245694, guid: 7578f87279d2348758a6f7adc288fc1f, type: 3}
+  ostatneAutaLayerMaska:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,6 +1106,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5432170313893576087, guid: 4447f2345ac2c4edbb57627b299ab0f1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1421298601}
+    - targetCorrespondingSourceObject: {fileID: 5432170313893576087, guid: 4447f2345ac2c4edbb57627b299ab0f1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1421298607}
     - targetCorrespondingSourceObject: {fileID: -7616419905788280476, guid: 4447f2345ac2c4edbb57627b299ab0f1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1772461041}
@@ -1174,6 +1195,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalnyObjekt: {fileID: 1421298600}
   model: {fileID: 1421298599}
+--- !u!114 &1421298605 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8117741849020929495, guid: 4447f2345ac2c4edbb57627b299ab0f1, type: 3}
+  m_PrefabInstance: {fileID: 1421298596}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421298598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0632dc16183f4478e91d802d70a4ab6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1421298607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421298598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178c3d0a7d4264d31afa1e7e1ebcd461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoManazer: {fileID: 1421298605}
+  ostatneAutaLayerMaska:
+    serializedVersion: 2
+    m_Bits: 128
+  meshCollider: {fileID: 1772461041}
 --- !u!1 &1772461037 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7616419905788280476, guid: 4447f2345ac2c4edbb57627b299ab0f1, type: 3}

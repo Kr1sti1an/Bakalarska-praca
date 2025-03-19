@@ -473,7 +473,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 639457301}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 640527316}
+        m_TargetAssemblyTypeName: HlavneMenuManazer, Assembly-CSharp
+        m_MethodName: UkonciHru
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &639457301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,6 +536,7 @@ GameObject:
   - component: {fileID: 640527314}
   - component: {fileID: 640527313}
   - component: {fileID: 640527312}
+  - component: {fileID: 640527316}
   m_Layer: 5
   m_Name: CanvasHlavneMenu
   m_TagString: Untagged
@@ -618,6 +631,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &640527316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640527311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9755223f146b7422c88f5d65a771d7c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  najvyssieSkoreText: {fileID: 1056834950}
 --- !u!1 &955313384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,7 +1409,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1989762128}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 640527316}
+        m_TargetAssemblyTypeName: HlavneMenuManazer, Assembly-CSharp
+        m_MethodName: HratHru
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1989762128
 MonoBehaviour:
   m_ObjectHideFlags: 0

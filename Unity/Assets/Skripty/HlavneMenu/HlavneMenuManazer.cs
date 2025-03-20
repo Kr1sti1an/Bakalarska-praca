@@ -4,13 +4,13 @@ using TMPro;
 
 public class HlavneMenuManazer : MonoBehaviour
 {
-    public TMP_Text najvyssieSkoreText; // Odkaz na High Score text
+    public TMP_Text najvyssieSkoreText;
 
     void Start()
     {
 
-        int topSkore = PlayerPrefs.GetInt("Najvyssie Skore", 0);
-        najvyssieSkoreText.text = "Najvyssie Skore " + topSkore;
+        int topSkore = PlayerPrefs.GetInt("Najvyššie Skore", 0);
+        najvyssieSkoreText.text = "Najvyššie Skore " + topSkore;
     }
 
     public void HratHru()

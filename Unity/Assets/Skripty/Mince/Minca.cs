@@ -11,7 +11,6 @@ public class Minca : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Minca získaná!");
             SkoreManazer.PridajSkore(1);
             Destroy(gameObject);
         }

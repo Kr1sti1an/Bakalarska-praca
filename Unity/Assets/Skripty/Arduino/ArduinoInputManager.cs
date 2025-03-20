@@ -34,7 +34,7 @@ public class ArduinoInputManager : MonoBehaviour
             readThread = new Thread(ReadSerial);
             readThread.Start();
 
-            Debug.Log("Seriovy port uspešne otvorený");
+            Debug.Log("Arduino ovládač úspešne pripojený!");
         }
         catch (System.Exception e)
         {

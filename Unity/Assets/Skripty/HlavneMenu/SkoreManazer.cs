@@ -7,7 +7,6 @@ public static class SkoreManazer
     public static void PridajSkore(int mnozstvo)
     {
         AktualneSkore += mnozstvo;
-        Debug.Log("Pridané skóre: " + mnozstvo + ", aktuálne skóre: " + AktualneSkore);
         if (AktualneSkore > ZiskajHighSkore())
         {
             NastavHighSkore(AktualneSkore);

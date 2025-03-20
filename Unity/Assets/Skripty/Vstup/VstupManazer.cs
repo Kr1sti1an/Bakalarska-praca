@@ -56,6 +56,8 @@ public class VstupManazer : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
+            Time.timeScale = 1f;
+            Instance = null;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }

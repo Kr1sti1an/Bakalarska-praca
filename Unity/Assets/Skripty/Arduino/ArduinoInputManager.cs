@@ -1,38 +1,38 @@
 using UnityEngine;
-using System.IO.Ports; 
+using System.IO.Ports;
 using System.Threading;
 
-public class ArduinoInputManager : MonoBehaviour
+public class ArduinoVstupManazer : MonoBehaviour
 {
-    public string portName = "/dev/cu.usbmodem1101"; 
-    public int baudRate = 9600;
+    public string nazovPortu = "/dev/cu.usbmodem1101";
+    public int baudovaRychlost = 9600;
 
-    private SerialPort serialPort;
-    private Thread readThread;
-    private bool isRunning;
+    private SerialPort seriovyPort;
+    private Thread citacieVlakno;
+    private bool bezi;
 
-    private string receivedData = "";
+    private string prijateData = "";
 
     void Start()
     {
-        OpenConnection();
+        OtvorSpojenie();
     }
 
-    void OpenConnection()
+    void OtvorSpojenie()
     {
-        Debug.Log("Snažím sa otvoriť port: " + portName); 
+        Debug.Log("Snažím sa otvoriť port: " + nazovPortu);
 
-        serialPort = new SerialPort(portName, baudRate)
+        seriovyPort = new SerialPort(nazovPortu, baudovaRychlost)
         {
             ReadTimeout = 50
         };
 
         try
         {
-            serialPort.Open();
-            isRunning = true;
-            readThread = new Thread(ReadSerial);
-            readThread.Start();
+            seriovyPort.Open();
+            bezi = true;
+            citacieVlakno = new Thread(CitajSerial);
+            citacieVlakno.Start();
 
             Debug.Log("Arduino ovládač úspešne pripojený!");
         }
@@ -42,21 +42,20 @@ public class ArduinoInputManager : MonoBehaviour
         }
     }
 
-    void ReadSerial()
+    void CitajSerial()
     {
-        while (isRunning && serialPort != null && serialPort.IsOpen)
+        while (bezi && seriovyPort != null && seriovyPort.IsOpen)
         {
             try
             {
-                string line = serialPort.ReadLine();
-                lock (receivedData)
+                string riadok = seriovyPort.ReadLine();
+                lock (prijateData)
                 {
-                    receivedData = line;
+                    prijateData = riadok;
                 }
             }
             catch (System.TimeoutException)
             {
-                
             }
             catch (System.Exception e)
             {
@@ -67,49 +66,71 @@ public class ArduinoInputManager : MonoBehaviour
 
     void Update()
     {
-        string data = "";
-        lock (receivedData)
+        string lokalneData = "";
+        lock (prijateData)
         {
-            data = receivedData;
-            receivedData = "";
+            lokalneData = prijateData;
+            prijateData = "";
         }
 
-        if (!string.IsNullOrEmpty(data))
+        if (!string.IsNullOrEmpty(lokalneData))
         {
-            ProcessData(data);
-        }
-    }
-
-    void ProcessData(string data)
-    {
-        
-        string[] values = data.Split(',');
-        if (values.Length == 3)
-        {
-            int potValue = int.Parse(values[0].Trim());
-            bool forwardButton = values[1].Trim() == "1";
-            bool brakeButton = values[2].Trim() == "1";
-
-            
-            float steering = Map(potValue, 0, 1023, -1f, 1f);
-
-            
-            VstupManazer.Instance.NastavVstupZArduina(steering, forwardButton, brakeButton);
+            SpracujData(lokalneData);
         }
     }
 
-    float Map(float value, float from1, float to1, float from2, float to2)
+    void SpracujData(string data)
     {
-        return Mathf.Clamp((value - from1)*(to2 - from2)/(to1 - from1)+from2, from2, to2);
+        string[] hodnoty = data.Split(',');
+        if (hodnoty.Length == 3)
+        {
+            int potHodnota = int.Parse(hodnoty[0].Trim());
+            bool tlacidloDopredu = hodnoty[1].Trim() == "1";
+            bool tlacidloBrzda = hodnoty[2].Trim() == "1";
+
+            float zatacanie = Map(potHodnota, 0, 1023, -1f, 1f);
+
+            if (VstupManazer.Instance != null)
+                VstupManazer.Instance.NastavVstupZArduina(zatacanie, tlacidloDopredu, tlacidloBrzda);
+        }
+    }
+
+    float Map(float hodnota, float od1, float do1, float od2, float do2)
+    {
+        return Mathf.Clamp(
+            (hodnota - od1) * (do2 - od2) / (do1 - od1) + od2,
+            od2,
+            do2
+        );
+    }
+
+    void OnDestroy()
+    {
+        bezi = false;
+        if (citacieVlakno != null && citacieVlakno.IsAlive)
+        {
+            citacieVlakno.Join();
+        }
+
+        if (seriovyPort != null && seriovyPort.IsOpen)
+        {
+            seriovyPort.Close();
+            Debug.Log("Sériový port zatvorený v OnDestroy.");
+        }
     }
 
     void OnApplicationQuit()
     {
-        isRunning = false;
-        if (readThread != null)
-            readThread.Join();
+        bezi = false;
+        if (citacieVlakno != null && citacieVlakno.IsAlive)
+        {
+            citacieVlakno.Join();
+        }
 
-        if (serialPort != null && serialPort.IsOpen)
-            serialPort.Close();
+        if (seriovyPort != null && seriovyPort.IsOpen)
+        {
+            seriovyPort.Close();
+            Debug.Log("Sériový port zatvorený v OnApplicationQuit.");
+        }
     }
 }

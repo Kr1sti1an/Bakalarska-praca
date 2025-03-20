@@ -9,8 +9,8 @@ public class HlavneMenuManazer : MonoBehaviour
     void Start()
     {
 
-        int topSkore = PlayerPrefs.GetInt("Najvyššie Skore", 0);
-        najvyssieSkoreText.text = "Najvyššie Skore " + topSkore;
+        int topSkore = PlayerPrefs.GetInt("Najvyššie Skóre", 0);
+        najvyssieSkoreText.text = "Najvyššie Skóre: " + topSkore;
     }
 
     public void HratHru()

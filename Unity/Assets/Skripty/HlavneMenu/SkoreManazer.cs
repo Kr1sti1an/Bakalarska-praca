@@ -16,12 +16,12 @@ public static class SkoreManazer
 
     public static int ZiskajHighSkore()
     {
-        return PlayerPrefs.GetInt("Najvyššie Skore", 0);
+        return PlayerPrefs.GetInt("Najvyššie Skóre", 0);
     }
 
     public static void NastavHighSkore(int noveHighSkore)
     {
-        PlayerPrefs.SetInt("Najvyššie Skore", noveHighSkore);
+        PlayerPrefs.SetInt("Najvyššie Skóre", noveHighSkore);
         PlayerPrefs.Save();
     }
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Coin : MonoBehaviour
+public class Minca : MonoBehaviour
 {
     private void Start()
     {

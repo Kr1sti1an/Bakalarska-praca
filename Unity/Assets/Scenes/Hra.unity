@@ -330,6 +330,54 @@ MonoBehaviour:
   ostatneAutaLayerMaska:
     serializedVersion: 2
     m_Bits: 128
+--- !u!1 &355848262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 355848264}
+  - component: {fileID: 355848263}
+  m_Layer: 0
+  m_Name: MincaSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &355848263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355848262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b17d2ecddcd0a4a399d03378f7606a98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mincaPrefab: {fileID: 6894139573465791120, guid: 31b8198f4999347a197918cab0e9b179, type: 3}
+  hracTransform: {fileID: 0}
+  intervalSpawnu: 2
+  vzdialenostSpawnuPredHracom: 50
+--- !u!4 &355848264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355848262}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.084439784, y: 3.2479243, z: -2.6924577}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,6 +1114,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -7616419905788280476, guid: 4447f2345ac2c4edbb57627b299ab0f1, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: -6681562467930313874, guid: 4447f2345ac2c4edbb57627b299ab0f1, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -1156,9 +1208,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5432170313893576087, guid: 4447f2345ac2c4edbb57627b299ab0f1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1421298607}
-    - targetCorrespondingSourceObject: {fileID: -7616419905788280476, guid: 4447f2345ac2c4edbb57627b299ab0f1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1772461041}
     - targetCorrespondingSourceObject: {fileID: 905121333476464407, guid: 4447f2345ac2c4edbb57627b299ab0f1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 520826265}
@@ -1269,34 +1318,7 @@ MonoBehaviour:
   ostatneAutaLayerMaska:
     serializedVersion: 2
     m_Bits: 128
-  meshCollider: {fileID: 1772461041}
---- !u!1 &1772461037 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -7616419905788280476, guid: 4447f2345ac2c4edbb57627b299ab0f1, type: 3}
-  m_PrefabInstance: {fileID: 1421298596}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &1772461041
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1772461037}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5114910698346790811, guid: 49a7e7a87d66346a890daede8f94a018, type: 3}
+  meshCollider: {fileID: 0}
 --- !u!64 &1911633063
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1405,3 +1427,4 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 1421298596}
   - {fileID: 537831962}
+  - {fileID: 355848264}

@@ -5,6 +5,9 @@ public class VstupManazer : MonoBehaviour
 {
     [SerializeField] private AutoManazer autoManazer;
 
+    [SerializeField] private GameObject pauzaMenu;
+    private bool jePauza = false;
+
     public static VstupManazer Instance;
 
     private float arduinoSteering = 0f;
@@ -21,7 +24,6 @@ public class VstupManazer : MonoBehaviour
             return;
         }
 
-        // Singleton pre jednoduchý prístup z iných skriptov
         if (Instance == null)
             Instance = this;
         else
@@ -30,6 +32,32 @@ public class VstupManazer : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (!jePauza)
+            {
+                pauzaMenu.SetActive(true);
+                Time.timeScale = 0f;
+                jePauza = true;
+            }
+            else
+            {
+                pauzaMenu.SetActive(false);
+                Time.timeScale = 1f;
+                jePauza = false;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SkoreManazer.ResetujSkore();
+            Time.timeScale = 1f;
+
+            Instance = null;
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
         Vector2 vstup = Vector2.zero;
 
         if (useArduinoInput)
@@ -37,7 +65,7 @@ public class VstupManazer : MonoBehaviour
             vstup.x = arduinoSteering;
 
             if (arduinoForward && arduinoBrake)
-                vstup.y = 0f; // Obe tlačidlá stlačené - auto stojí
+                vstup.y = 0f;
             else if (arduinoForward)
                 vstup.y = 1f;
             else if (arduinoBrake)
@@ -47,28 +75,18 @@ public class VstupManazer : MonoBehaviour
         }
         else
         {
-            // Použitie vstupov z klávesnice
             vstup.x = Input.GetAxis("Horizontal");
             vstup.y = Input.GetAxis("Vertical");
         }
 
         autoManazer.NastavVstup(vstup);
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SkoreManazer.ResetujSkore();
-            Time.timeScale = 1f;
-            Instance = null;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
     }
 
     public void NastavVstupZArduina(float steering, bool forward, bool brake)
     {
         arduinoSteering = steering;
 
-        // Pridanie mŕtvej zóny pre volant
-        const float deadZone = 0.1f; // 10% mŕtva zóna
+        const float deadZone = 0.1f;
         if (Mathf.Abs(arduinoSteering) < deadZone)
             arduinoSteering = 0f;
 

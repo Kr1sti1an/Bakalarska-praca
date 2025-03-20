@@ -1,32 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class VybuchManazer : MonoBehaviour
 {
-
     [SerializeField]
     GameObject originalnyObjekt;
 
     [SerializeField]
     GameObject model;
 
-    Rigidbody[] rigidbodies;
+    Rigidbody[] telesa;
 
-    private void Awake(){
-        rigidbodies = model.GetComponentsInChildren<Rigidbody>(true);
-    } 
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-
+        telesa = model.GetComponentsInChildren<Rigidbody>(true);
     }
 
-    public void Vybuch(Vector3 vonkajsiaSila){
+    void Start()
+    {
+    }
+
+    public void Vybuch(Vector3 vonkajsiaSila)
+    {
         originalnyObjekt.SetActive(false);
 
-        foreach (Rigidbody rb in rigidbodies){
+        foreach (Rigidbody rb in telesa)
+        {
             rb.transform.parent = null;
 
             rb.GetComponent<MeshCollider>().enabled = true;
@@ -37,8 +38,15 @@ public class VybuchManazer : MonoBehaviour
             rb.AddForce(Vector3.up * 200 + vonkajsiaSila, ForceMode.Force);
             rb.AddTorque(Random.insideUnitSphere * 0.5f, ForceMode.Impulse);
 
-            //Zmenim tag aby vybuchli AI auta po zasahu casti z mojho auta
             rb.gameObject.tag = "AutoCasti";
         }
+
+        StartCoroutine(NacitajGameOver());
+    }
+
+    IEnumerator NacitajGameOver()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("GameOver");
     }
 }

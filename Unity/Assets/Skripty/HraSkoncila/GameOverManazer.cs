@@ -6,18 +6,18 @@ public class GameOverManazer : MonoBehaviour
 
     public void ZnovaHrat()
     {
-        SkoreManazer.ResetujSkore();
-        SceneManager.LoadScene("Hra");
+        SkoreManazer.ResetujSkore();    //vynuluje aktuálne skore
+        SceneManager.LoadScene("Hra");  //načíta hlavnú scénu
     }
 
     public void DoHlavnehoMenu()
     {
-        SceneManager.LoadScene("MenuScena");
+        SceneManager.LoadScene("MenuScena");    //prepne do menu
     }
 
     public void UkonciHru()
     {
-        Debug.Log("Hra bola ukončená.");
+        Debug.Log("Hra bola ukončená.");    //ukončí hru (len v Buildnutej aplikácií)
         Application.Quit();
     }
 }

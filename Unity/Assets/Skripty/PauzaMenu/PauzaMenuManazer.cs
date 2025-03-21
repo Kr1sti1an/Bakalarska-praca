@@ -3,16 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class PauzaMenuManazer : MonoBehaviour
 {
-    // Referencia na GameObject pauzového menu (priradíš ho v Inspector)
-    public GameObject pauzaMenu;
+    public GameObject pauzaMenu;    //referencia na Canvas pauza menu
 
-    // Indikátor, či je hra práve pozastavená
-    private bool hraPauznuta = false;
+    private bool hraPauznuta = false;   //bool hodnota či je hra práve pozastavená
 
     void Update()
     {
-        // Ak stlačíme kláves P, prepni pauzu
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))    //ak sa na klávesnici stlačí kláves P pauzuje sa hra
         {
             if (hraPauznuta)
                 PokracujHru();
@@ -21,31 +18,27 @@ public class PauzaMenuManazer : MonoBehaviour
         }
     }
 
-    // Metóda na pauzovanie hry
-    public void PauzujHru()
+    public void PauzujHru() //metóda na pauzovanie hry
     {
         pauzaMenu.SetActive(true);
         Time.timeScale = 0f; // pozastaví hru
         hraPauznuta = true;
     }
 
-    // Metóda na pokračovanie v hre
-    public void PokracujHru()
+    public void PokracujHru()   //metóda na pokračovanie v hre
     {
         pauzaMenu.SetActive(false);
         Time.timeScale = 1f; // obnovenie normálneho času
         hraPauznuta = false;
     }
 
-    // Metóda volaná tlačidlom "Hlavné menu"
-    public void DoHlavnehoMenu()
+    public void DoHlavnehoMenu()    //metóda ktorá vráti do Hlavného menu
     {
         Time.timeScale = 1f; // pred návratom obnov čas
         SceneManager.LoadScene("MenuScena"); // názov scény hlavného menu
     }
 
-    // Metóda volaná tlačidlom "Ukončiť hru"
-    public void UkonciHru()
+    public void UkonciHru() //ukončí hru v Buildnutej aplikácií
     {
         Application.Quit();
     }

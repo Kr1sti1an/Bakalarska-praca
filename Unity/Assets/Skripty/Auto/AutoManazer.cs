@@ -8,34 +8,32 @@ public class AutoManazer : MonoBehaviour
     Rigidbody rb;
 
     [SerializeField]
-    Transform hernyModel;
+    Transform hernyModel;   //vizuálny model auta, napríklad pre natáčanie modelu
 
     [SerializeField]
-    MeshRenderer autoSietovyCitac;
+    MeshRenderer autoSietovyCitac;  //mesh renderer, použitý napríklad na zmenu farby svetiel pri brzdení
 
     [SerializeField]
-    VybuchManazer vybuchManazer;
+    VybuchManazer vybuchManazer;    //skript ktorý spracováva logiku výbuchu, auto sa rozletí na 8častí
 
-    //Max hodnoty
+    //Max hodnoty pre rýchlosť a zabáčanie
     float maxOvladaciaRychlost = 2;
     float maxVpredRychlost = 30;
 
-    //Nasobitel
+    //Násobitele, určujú aký silný bude plyn, brzda a zatáčanie
     float rozbehNasobitel = 3;
     float brzdaNasobitel = 15;
     float volantNasobitel = 5;
 
-    //Vstup
+    // tu sa ukladá vstup od hráča X/Y os lebo Vector2
     Vector2 vstup = Vector2.zero;
 
-    //Emisivna hodnota
-    int _EmissionColor = Shader.PropertyToID("_EmissionColor");
+    int _EmissionColor = Shader.PropertyToID("_EmissionColor"); //emisívna hodnota, slúži na zmenu emission color farby na svetlách, ked brzdím svietia na červeno viac
     Color emisivnaFarba = Color.white;
     float emisivnaFarbaNasobitel = 0f;
 
-    //Stav vybuchu
-    bool jeVybuchnuty = false;
-    bool jeHrac = true;
+    bool jeVybuchnuty = false;  //stav výbuchu
+    bool jeHrac = true; // rozdeil či je auto hráčove alebo AI
 
     // Start is called before the first frame update
     void Start()
@@ -48,11 +46,10 @@ public class AutoManazer : MonoBehaviour
     {
         if (jeVybuchnuty)
         {
-            return;
+            return; //ak vybuchne koniec nerobí sa logika otáčania auta ani nič
         }
 
-        //Otočenie modelu auta pri zabáčaní
-        hernyModel.transform.rotation = Quaternion.Euler(0, rb.linearVelocity.x * 5, 0);
+        hernyModel.transform.rotation = Quaternion.Euler(0, rb.linearVelocity.x * 5, 0);    //ak auto zatočí napríklad doprava vyzreá to že auto sa reálne natáča doprava
 
         if (autoSietovyCitac != null)
         {
@@ -60,52 +57,47 @@ public class AutoManazer : MonoBehaviour
 
             if (vstup.y < 0)
             {
-                nasobitelFarbyAuta = 4.0f;
+                nasobitelFarbyAuta = 4.0f;  //vačšia žiara pri brzdení ak stlačíme brzdu vstup.y < 0
             }
 
-            emisivnaFarbaNasobitel = Mathf.Lerp(emisivnaFarbaNasobitel, nasobitelFarbyAuta, Time.deltaTime * 4);
+            emisivnaFarbaNasobitel = Mathf.Lerp(emisivnaFarbaNasobitel, nasobitelFarbyAuta, Time.deltaTime * 4);    //časom sa vyblednuje emisívna hodnota, plynulý prechod brzdových svetiel
 
-            autoSietovyCitac.material.SetColor(_EmissionColor, emisivnaFarba * emisivnaFarbaNasobitel);
+            autoSietovyCitac.material.SetColor(_EmissionColor, emisivnaFarba * emisivnaFarbaNasobitel); //aplikujeme nové zafarbenie na materiál
         }
 
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate()  //FixedUpdate(), volá sa v konštantom čase nezávisle od FPS ako normálny Update() ktorý sa volá každý frame. FixedUpdate() je v tomto prípade lepší vzhladom pre prácu s fyzikou
     {
 
         //Je vybuchnuty
         if (jeVybuchnuty)
         {
-            //Použitie dragu
             rb.linearDamping = rb.linearVelocity.z * 0.1f;
             rb.linearDamping = Mathf.Clamp(rb.linearDamping, 1.5f, 10);
 
-            //Pohyb vpred po vybuchu auta
-            rb.MovePosition(Vector3.Lerp(transform.position, new Vector3(0, 0, transform.position.z), Time.deltaTime * 0.5f));
+            rb.MovePosition(Vector3.Lerp(transform.position, new Vector3(0, 0, transform.position.z), Time.deltaTime * 0.5f)); //pohyb vpred po výbuchu auta
 
             return;
         }
 
-        //Použitie rozbehu
-        if (vstup.y > 0)
+        if (vstup.y > 0)    //volá sa rozbeh ak je stlačený pushbutton
         {
             Rozbeh();
         }
         else
         {
-            rb.linearDamping = 0.2f;
+            rb.linearDamping = 0.2f;    //ak sa nedrží plyn auto spomaľuje ale nie uplne prudko
         }
 
-        //Použitie brzdy
-        if (vstup.y < 0)
+        if (vstup.y < 0)    //volá sa brzda
         {
             Brzda();
         }
 
-        Volant();
+        Volant();   //tu sa rieši bočný pohyb na základe výstupov z potenciometra cez arduino
 
-        //Nedovolime aby auto cuvalo
-        if (rb.linearVelocity.z <= 0)
+        if (rb.linearVelocity.z <= 0)   //zákaz cúvania auta, maximálne len zabrzdí na nulu
         {
             rb.linearVelocity = Vector3.zero;
         }
@@ -113,21 +105,19 @@ public class AutoManazer : MonoBehaviour
 
     void Rozbeh()
     {
-        rb.linearDamping = 0;
+        rb.linearDamping = 0;   //auto sa rozbehne plynule
 
-        //Zotrvanie v rychlostnom limite
-        if (rb.linearVelocity.z >= maxVpredRychlost)
+        if (rb.linearVelocity.z >= maxVpredRychlost)    //udržanie v rýchlostnom limite
         {
             return;
         }
 
-        rb.AddForce(rb.transform.forward * rozbehNasobitel * vstup.y);
+        rb.AddForce(rb.transform.forward * rozbehNasobitel * vstup.y);  //ak ešte ideme pomaly môžeme zrýchliť
     }
 
     void Brzda()
     {
-        //Nebrzdiť pokym nejdeme v pred
-        if (rb.linearVelocity.z <= 0)
+        if (rb.linearVelocity.z <= 0)   //auto brzdí len ak sa hýbe vpred, inak už nie
         {
             return;
         }
@@ -138,54 +128,48 @@ public class AutoManazer : MonoBehaviour
     {
         if (Mathf.Abs(vstup.x) > 0)
         {
-            //Pohnuť autom do strany
             float rychlostnyZakladnyLimit = rb.linearVelocity.z / 5.0f;
-            rychlostnyZakladnyLimit = Mathf.Clamp01(rychlostnyZakladnyLimit);
+            rychlostnyZakladnyLimit = Mathf.Clamp01(rychlostnyZakladnyLimit);   //oklieštime pomer na 0 až 1 pomoocu Mathf.Clamp01()
 
-            rb.AddForce(rb.transform.right * volantNasobitel * vstup.x * rychlostnyZakladnyLimit);
+            rb.AddForce(rb.transform.right * volantNasobitel * vstup.x * rychlostnyZakladnyLimit);  //čím auto ide rýchlejšie, tým viac možem otáčať potenciometer, pridáva sa bočná sila a uto nezatáča pri vysokej rýchlosti tak prudko do strán
 
-            //Normalizuj X rýchlosť
-            float normalizovaneX = rb.linearVelocity.x / maxOvladaciaRychlost;
+            float normalizovaneX = rb.linearVelocity.x / maxOvladaciaRychlost; //obmedzenie X rýchlosti zatáčania
 
-            //Zaistenie že to nebude viac ako 1
-            normalizovaneX = Mathf.Clamp(normalizovaneX, -1.0f, 1.0f);
+            normalizovaneX = Mathf.Clamp(normalizovaneX, -1.0f, 1.0f);  //Oklieštenie na -1 až 1
 
-            //Zaistenie že ostaneme v zakladnom rychlostnom limite
-            rb.linearVelocity = new Vector3(normalizovaneX * maxOvladaciaRychlost, 0, rb.linearVelocity.z);
-
+            rb.linearVelocity = new Vector3(normalizovaneX * maxOvladaciaRychlost, 0, rb.linearVelocity.z); //bočná rýchlosť nepresiahne nami definovaný limit maxovladaciaRychlost
         }
         else
         {
-            //Automaticke vycentrovanie auta
-            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, new Vector3(0, 0, rb.linearVelocity.z), Time.fixedDeltaTime * 3);
+            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, new Vector3(0, 0, rb.linearVelocity.z), Time.fixedDeltaTime * 3);   //automatické vycentrovanie auta ak nezatáčame
         }
     }
 
     public void NastavVstup(Vector2 vstupnyVektor)
     {
-        vstupnyVektor.Normalize();
+        vstupnyVektor.Normalize();  //zabezpečí že vstupný vektor je 1 ak bol nenulový, XY má vždy dĺžku 1
         vstup = vstupnyVektor;
     }
 
     public void NastavMaxRychlost(float novaMaxRychlost)
     {
-        maxVpredRychlost = novaMaxRychlost;
+        maxVpredRychlost = novaMaxRychlost; //umožnuje meniť maximálnu rýchlosť dopredu
     }
 
-    IEnumerator SpomalCasCO()
+    IEnumerator SpomalCasCO()   //korutina na spomalenie času
     {
         while (Time.timeScale > 0.2f)
         {
-            Time.timeScale -= Time.deltaTime * 2;
+            Time.timeScale -= Time.deltaTime * 2;   //efekt spomalenia
 
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f);  //yield return, počká 0.5 sekundy 
 
         while (Time.timeScale <= 1.0f)
         {
-            Time.timeScale += Time.deltaTime;
+            Time.timeScale += Time.deltaTime;   //čas sa znova vráti do normálu
 
             yield return null;
         }
@@ -197,8 +181,7 @@ public class AutoManazer : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 
-        //AI auta vybuchnu len vtedy pokial sa stretnu s hracom alebo castou z hraca ktora vyleti
-        if (!jeHrac)
+        if (!jeHrac)    //ak je to AIAuto tak vybuchne len pri kolízií s hráčom alebo časťou z hráča, súčiastky ktoré vyleteli pri výbuchu, alebo častou z vybuchnuteho AI
         {
             if (collision.transform.root.CompareTag("Untagged"))
             {
@@ -211,11 +194,11 @@ public class AutoManazer : MonoBehaviour
         }
 
         Vector3 velocity = rb.linearVelocity;
-        vybuchManazer.Vybuch(velocity * 45);
+        vybuchManazer.Vybuch(velocity * 45);    //rozletí sa na súčiastky
 
-        jeVybuchnuty = true;
+        jeVybuchnuty = true;    //nastavíme true čo mení správanie v update() a FixedUpdate()
 
-        StartCoroutine(SpomalCasCO());
+        StartCoroutine(SpomalCasCO());  //pri výbuchu sa spomalí čas
     }
 
 }

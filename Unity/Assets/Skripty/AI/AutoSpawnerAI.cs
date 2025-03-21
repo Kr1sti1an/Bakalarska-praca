@@ -6,21 +6,19 @@ public class AutoSpawnerAI : MonoBehaviour
 {
 
     [SerializeField]
-    GameObject[] autoAIPrefaby;
+    GameObject[] autoAIPrefaby; //pole gameobject prefabov, napríklad viac modelov AI áut
 
-    GameObject[] autoAIPole = new GameObject[20];
+    GameObject[] autoAIPole = new GameObject[20]; //do tohoto pola sa ukladá inštancia až 20 AI áut
 
-    Transform hracAutoTransform;
+    Transform hracAutoTransform;    //podla polohy hráča sa spawnuju AI auta
 
-    //Casovanie
-    float casOdPoslednehoSpawnu = 0;
-    WaitForSeconds cakaj = new WaitForSeconds(0.5f);
+    float casOdPoslednehoSpawnu = 0;    //zabezpečuje aby sa AI auta nespawnovali príliš často
+    WaitForSeconds cakaj = new WaitForSeconds(0.5f); // v korutine aby bežala každých 0.5 sekundy
 
-    //Kontrola predbehnutia
     [SerializeField]
-    LayerMask ostatneAutaLayerMaska;
+    LayerMask ostatneAutaLayerMaska;    // pomocou tejto layer masky sa overuje či je priestor volný na spawn AI auta
 
-    Collider[] kontrolaPredbehnutiaCollider = new Collider[1];
+    Collider[] kontrolaPredbehnutiaCollider = new Collider[1];  //pomocné pole
 
     // Start is called before the first frame update
     void Start()
@@ -30,15 +28,14 @@ public class AutoSpawnerAI : MonoBehaviour
 
         int prefabIndex = 0;
 
-        for (int i = 0; i < autoAIPole.Length; i++)
+        for (int i = 0; i < autoAIPole.Length; i++) // 0 - 19, hned sa vytvorí inštanciami naplnené pole ai prefabov, ktoré sa hneď nastavia na false, predpripravíme pole
         {
             autoAIPole[i] = Instantiate(autoAIPrefaby[prefabIndex]);
             autoAIPole[i].SetActive(false);
 
             prefabIndex++;
 
-            //Loop cez prefab index ak sa nám minú prefaby
-            if (prefabIndex > autoAIPrefaby.Length - 1)
+            if (prefabIndex > autoAIPrefaby.Length - 1) //Loop cez prefab index ak sa nám minú prefaby
             {
                 prefabIndex = 0;
             }
@@ -51,71 +48,65 @@ public class AutoSpawnerAI : MonoBehaviour
     {
         while (true)
         {
-            CistenieAutZaKamerou();
-            SpawnNovehoauta();
-            yield return cakaj;
+            CistenieAutZaKamerou(); //deaktivuje autá ktoreé sú príliš ďaleko za kamerou
+            SpawnNovehoauta();  //aktivuje nové auto ak je splnený priestorový aj časový limit
+            yield return cakaj; //yield return zabezpečí že korutina počka 0.5 sekundy a potom vykonáva akcie znova, zabezpečuje plynulejší chod hry tým že nejde s každým framom ale je tam pauza.
         }
     }
 
     void SpawnNovehoauta()
     {
-        if (Time.time - casOdPoslednehoSpawnu < 2)
+        if (Time.time - casOdPoslednehoSpawnu < 2)  //ak neuplynuli aspoň 2 sekundy od posledného spawnu tak nespawnujeme
         {
             return;
         }
 
         GameObject autoNaSpawn = null;
 
-        //Najdeme auto na spawn
         foreach (GameObject aiAuto in autoAIPole)
         {
-            //Preskoč aktivne auta
-            if (aiAuto.activeInHierarchy)
+            if (aiAuto.activeInHierarchy)   //preskočíme aktívne autá
             {
                 continue;
             }
 
-            autoNaSpawn = aiAuto;
+            autoNaSpawn = aiAuto;   //uložíme do autoNaSpawn
             break;
         }
 
-        //Ak neni auto k dispozicií na spawn
-        if (autoNaSpawn == null)
+        if (autoNaSpawn == null)    //ak neni žiadne auto na spawn čakáme kým sa neuvolní v korutine sa znova volá táto funkcia
         {
             return;
         }
 
-        Vector3 spawnPozicia = new Vector3(0, 0, hracAutoTransform.transform.position.z + 100);
+        Vector3 spawnPozicia = new Vector3(0, 0, hracAutoTransform.transform.position.z + 100); //pozícia kde sa spawne nové auto, čiže 100jednotiek pred hráčom na osi Z
 
-        if (Physics.OverlapBoxNonAlloc(spawnPozicia, Vector3.one * 2, kontrolaPredbehnutiaCollider, Quaternion.identity, ostatneAutaLayerMaska) > 0)
+        if (Physics.OverlapBoxNonAlloc(spawnPozicia, Vector3.one * 2, kontrolaPredbehnutiaCollider, Quaternion.identity, ostatneAutaLayerMaska) > 0)    //predchádzame koliízií pri spawne AI, ak tam už je iné auto tak sa nespawnuje
         {
             return;
         }
 
         autoNaSpawn.transform.position = spawnPozicia;
-        autoNaSpawn.SetActive(true);
+        autoNaSpawn.SetActive(true);    //zapína auto v scéne
 
-        casOdPoslednehoSpawnu = Time.time;
+        casOdPoslednehoSpawnu = Time.time;  //zapamätáva si čas od najnovšieho spawnu auta
     }
 
     void CistenieAutZaKamerou()
     {
-        foreach (GameObject aiAuto in autoAIPole)
+        foreach (GameObject aiAuto in autoAIPole)   //foreach cyklus, prechádzame všetký auta v poli
         {
-            //Preskocime neaktivne auta
-            if (!aiAuto.activeInHierarchy)
+            if (!aiAuto.activeInHierarchy)  //neaktivne preskočíme
             {
                 continue;
             }
 
-            //Skontrolujeme či je AI Auto dost daleko
-            if (aiAuto.transform.position.z - hracAutoTransform.position.z > 200)
+            if (aiAuto.transform.position.z - hracAutoTransform.position.z > 200)   //ak je daleko pred hráčom deaktivuje sa
             {
                 aiAuto.SetActive(false);
             }
 
-            //Skontrolujeme či je AI Auto dost daleko
-            if (aiAuto.transform.position.z - hracAutoTransform.position.z < -50)
+            if (aiAuto.transform.position.z - hracAutoTransform.position.z < -50)   //ak je daleko za hráčom tiež sa deaktivuje
             {
                 aiAuto.SetActive(false);
             }

@@ -13,6 +13,6 @@ UnityEngine, UnityEngine.SceneManagement, System.Collections, System.IO.Ports, S
 - Mikrokontrolér Arduino
 - Breadboard doska, 12x prepojovací kábel, 1x potenciometer, 2x tlačidlo, napájací kábel Arduina
 ## Schéma zapojenia ovládača
-
+<img width="1110" alt="Image" src="https://github.com/user-attachments/assets/84d4dc79-bf4f-444a-b7ae-3162edc3cf82" />
 
 

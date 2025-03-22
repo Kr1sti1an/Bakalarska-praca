@@ -43,7 +43,11 @@ void loop() {
 ## 3. Upload na Arduino dosku
 Pripojte vyskladaný ovládač podla schémy ku svojmu počítaču -> spustite program Arduino IDE a vyberte v ňom Váš port na ktorom máte pripojené arduino -> stlačte šípku vľavo od výberu portu -> kód by sa mal úspešne nahrať na Vaše Arduino.
 <img width="373" alt="Image" src="https://github.com/user-attachments/assets/ab7a6656-5358-46cf-b129-ff399cebc61f" />
+
 Následne nastavte Baud rate na 9600.
+<img width="567" alt="Image" src="https://github.com/user-attachments/assets/7a707ddc-5a30-43a6-afa4-ba0bdd06d699" />
+
+
 
 
 

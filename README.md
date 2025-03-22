@@ -17,6 +17,7 @@ UnityEngine, UnityEngine.SceneManagement, System.Collections, System.IO.Ports, S
 <img width="1110" alt="Image" src="https://github.com/user-attachments/assets/84d4dc79-bf4f-444a-b7ae-3162edc3cf82" />
 
 ## Sketch do Arduina
+```ruby
 void setup() {
   Serial.begin(9600);
   pinMode(3, INPUT); // Ľavé tlačidlo (dopredu)
@@ -37,4 +38,4 @@ void loop() {
 
   delay(50); // Malé oneskorenie pre stabilnejšiu komunikáciu
 }
-
+```

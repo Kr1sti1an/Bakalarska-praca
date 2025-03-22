@@ -55,6 +55,7 @@ void loop() {
 
 ## 4. Pridanie hry do Unity
 - Spustite si Váš Unity Hub, a uistite sa že máte nainštalovanú verziu editora **6000.0.25f1**
+- 
 - Po otvorení hry v editore nájdite v hierarchií na ľavo herný objekt s názvom **ArduinoInputManager**
 - V tomto objekte nastavte v inšpektori na pravo Váš názov portu (ten ktorý ste využili pri nahrávani sketchu do Arduina) a Baudovú rýchlosť (Baud rate)
 <img width="316" alt="Image" src="https://github.com/user-attachments/assets/dd352163-72c9-4541-8af3-5376a0bac1a9" />

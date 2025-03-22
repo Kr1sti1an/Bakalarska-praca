@@ -41,5 +41,5 @@ void loop() {
 }
 ```
 ## 3. Upload na Arduino dosku
-Pripojte vyskladaný ovládač podla schémy ku svojmu počítaču, spustite program Arduino IDE a vyberte v ňom Váš port na ktorom máte pripojené arduino, stlačte šípku vľavo od výberu portu, kód by sa mal úspešne nahrať na Vaše Arduino.
+Pripojte vyskladaný ovládač podla schémy ku svojmu počítaču -> spustite program Arduino IDE a vyberte v ňom Váš port na ktorom máte pripojené arduino -> stlačte šípku vľavo od výberu portu -> kód by sa mal úspešne nahrať na Vaše Arduino.
 

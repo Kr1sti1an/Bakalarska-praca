@@ -49,3 +49,11 @@ void loop() {
 <img width="567" alt="Image" src="https://github.com/user-attachments/assets/7a707ddc-5a30-43a6-afa4-ba0bdd06d699" />
 
 - V Serial Monitore by ste mali vidieť toto:
+<img width="351" alt="Image" src="https://github.com/user-attachments/assets/24528fd5-d427-4d7d-aca0-a26f3a2f52cf" />
+
+- Po úspešnom nahratí na Arduino je vhodné Arduino IDE vypnúť, aby sa predišlo rušeniu komunikácie s Unity.(Arduino IDE môže byť uprednostnené a v Unity Vám nebude fungovať Arduino).
+
+## 4. Pridanie hry do Unity
+- Spustite si Váš Unity Hub, a uistite sa že máte nainštalovanú verziu editora **6000.0.25f1**
+- Po otvorení hry v editore nájdite v hierarchií na ľavo herný objekt s názvom **ArduinoInputManager**
+- V tomto objekte nastavte v inšpektori na pravo Váš názov portu (ten ktorý ste využili pri nahrávani sketchu do Arduina) a Baudovú rýchlosť (Baud rate)

@@ -14,10 +14,10 @@ UnityEngine, UnityEngine.SceneManagement, System.Collections, System.IO.Ports, S
 - Arduino IDE 2.3.x, stiahnuť tu: https://www.arduino.cc/en/software/
 - Breadboard doska, 12x prepojovací kábel(individuálne podľa dĺžky káblov), 1x potenciometer, 2x tlačidlo, napájací kábel Arduina
 # Návod na spustenie
-## Schéma zapojenia ovládača
+## 1. Schéma zapojenia ovládača
 <img width="1110" alt="Image" src="https://github.com/user-attachments/assets/84d4dc79-bf4f-444a-b7ae-3162edc3cf82" />
 
-## Sketch do Arduina
+## 2. Sketch do Arduina
 ```ruby
 void setup() {
   Serial.begin(9600);
@@ -40,3 +40,6 @@ void loop() {
   delay(50); // Malé oneskorenie pre stabilnejšiu komunikáciu
 }
 ```
+## 3. Upload na Arduino dosku
+Pripojte vyskladaný ovládač podla schémy ku svojmu počítaču, spustite program Arduino IDE a vyberte v ňom Váš port na ktorom máte pripojené arduino, stlačte šípku vľavo od výberu portu, kód by sa mal úspešne nahrať na Vaše Arduino.
+

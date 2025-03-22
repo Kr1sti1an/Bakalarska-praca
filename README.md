@@ -11,7 +11,7 @@ UnityEngine, UnityEngine.SceneManagement, System.Collections, System.IO.Ports, S
 ## Minimálne Požiadavky
 - Unity editor(verzia 6000.0.25f1) s podporou .NET 4.x
 - Mikrokontrolér Arduino
-- Breadboard doska, 12x prepojovací kábel, 1x potenciometer, 2x tlačidlo, napájací kábel Arduina
+- Breadboard doska, 12x prepojovací kábel(individuálne podľa dĺžky káblov), 1x potenciometer, 2x tlačidlo, napájací kábel Arduina
 ## Schéma zapojenia ovládača
 <img width="1110" alt="Image" src="https://github.com/user-attachments/assets/84d4dc79-bf4f-444a-b7ae-3162edc3cf82" />
 

@@ -15,6 +15,26 @@ UnityEngine, UnityEngine.SceneManagement, System.Collections, System.IO.Ports, S
 - Breadboard doska, 12x prepojovací kábel(individuálne podľa dĺžky káblov), 1x potenciometer, 2x tlačidlo, napájací kábel Arduina
 ## Schéma zapojenia ovládača
 <img width="1110" alt="Image" src="https://github.com/user-attachments/assets/84d4dc79-bf4f-444a-b7ae-3162edc3cf82" />
-## Sketch do Arduina
 
+## Sketch do Arduina
+void setup() {
+  Serial.begin(9600);
+  pinMode(3, INPUT); // Ľavé tlačidlo (dopredu)
+  pinMode(2, INPUT); // Pravé tlačidlo (brzda)
+}
+
+void loop() {
+  int potValue = analogRead(A0); // Čítanie potenciometra (0 - 1023)
+  bool forwardButton = !digitalRead(3); // Čítanie stavu ľavého tlačidla
+  bool brakeButton = !digitalRead(2);   // Čítanie stavu pravého tlačidla
+
+  // Posielanie dát vo formáte: "potValue,forwardButton,brakeButton"
+  Serial.print(potValue);
+  Serial.print(",");
+  Serial.print(forwardButton);
+  Serial.print(",");
+  Serial.println(brakeButton);
+
+  delay(50); // Malé oneskorenie pre stabilnejšiu komunikáciu
+}
 

@@ -13,6 +13,7 @@ UnityEngine, UnityEngine.SceneManagement, System.Collections, System.IO.Ports, S
 - Mikrokontrolér Arduino
 - Arduino IDE 2.3.x, stiahnuť tu: https://www.arduino.cc/en/software/
 - Breadboard doska, 12x prepojovací kábel(individuálne podľa dĺžky káblov), 1x potenciometer, 2x tlačidlo, napájací kábel Arduina
+# Návod na spustenie
 ## Schéma zapojenia ovládača
 <img width="1110" alt="Image" src="https://github.com/user-attachments/assets/84d4dc79-bf4f-444a-b7ae-3162edc3cf82" />
 

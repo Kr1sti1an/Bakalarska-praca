@@ -1,7 +1,7 @@
 void setup() {
   Serial.begin(9600);
-  pinMode(3, INPUT); // Ľavé tlačidlo (dopredu)
-  pinMode(2, INPUT); // Pravé tlačidlo (brzda)
+  pinMode(3, INPUT_PULLUP); // Ľavé tlačidlo (dopredu)
+  pinMode(2, INPUT_PULLUP); // Pravé tlačidlo (brzda)
 }
 
 void loop() {

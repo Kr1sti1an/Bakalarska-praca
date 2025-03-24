@@ -15,7 +15,7 @@ UnityEngine, UnityEngine.SceneManagement, System.Collections, System.IO.Ports, S
 - Breadboard doska, 12x prepojovací kábel(individuálne podľa dĺžky káblov), 1x potenciometer, 2x tlačidlo, napájací kábel Arduina
 # Návod na spustenie
 ## 1. Schéma zapojenia ovládača
-<img width="1110" alt="Image" src="https://github.com/user-attachments/assets/84d4dc79-bf4f-444a-b7ae-3162edc3cf82" />
+<img width="1022" alt="Image" src="https://github.com/user-attachments/assets/345928ba-6bb1-45de-b7a2-21d47abcf1f6" />
 
 ## 2. Sketch do Arduina
 ```ruby

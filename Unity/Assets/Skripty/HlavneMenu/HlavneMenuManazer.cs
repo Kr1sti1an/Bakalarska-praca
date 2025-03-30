@@ -4,7 +4,7 @@ using TMPro;
 
 public class HlavneMenuManazer : MonoBehaviour
 {
-    public TMP_Text najvyssieSkoreText; //referencia na textové pole kde sa vypisuje High Skore
+    public TMP_Text najvyssieSkoreText;
 
     void Start()
     {
@@ -20,7 +20,7 @@ public class HlavneMenuManazer : MonoBehaviour
 
     public void UkonciHru()
     {
-        Debug.Log("Hra bola ukončená.");    //v Unity editore neukončí hru ale v Buildnutej hre zatvorí okno
+        Debug.Log("Hra bola ukončená.");
         Application.Quit();
     }
 

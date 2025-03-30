@@ -6,14 +6,14 @@ public class AutoSpawnerAI : MonoBehaviour
 {
 
     [SerializeField]
-    GameObject[] autoAIPrefaby; //pole gameobject prefabov, napríklad viac modelov AI áut
+    GameObject[] autoAIPrefaby;
 
-    GameObject[] autoAIPole = new GameObject[20]; //do tohoto pola sa ukladá inštancia až 20 AI áut
+    GameObject[] autoAIPole = new GameObject[20];
 
-    Transform hracAutoTransform;    //podla polohy hráča sa spawnuju AI auta
+    Transform hracAutoTransform;
 
-    float casOdPoslednehoSpawnu = 0;    //zabezpečuje aby sa AI auta nespawnovali príliš často
-    WaitForSeconds cakaj = new WaitForSeconds(0.5f); // v korutine aby bežala každých 0.5 sekundy
+    float casOdPoslednehoSpawnu = 0;
+    WaitForSeconds cakaj = new WaitForSeconds(0.5f);
 
     [SerializeField]
     LayerMask ostatneAutaLayerMaska;    // pomocou tejto layer masky sa overuje či je priestor volný na spawn AI auta

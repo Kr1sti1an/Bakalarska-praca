@@ -3,9 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class PauzaMenuManazer : MonoBehaviour
 {
-    public GameObject pauzaMenu;    //referencia na Canvas pauza menu
+    public GameObject pauzaMenu;
 
-    private bool hraPauznuta = false;   //bool hodnota či je hra práve pozastavená
+    private bool hraPauznuta = false;
 
     void Update()
     {
@@ -18,14 +18,14 @@ public class PauzaMenuManazer : MonoBehaviour
         }
     }
 
-    public void PauzujHru() //metóda na pauzovanie hry
+    public void PauzujHru()
     {
         pauzaMenu.SetActive(true);
         Time.timeScale = 0f; // pozastaví hru
         hraPauznuta = true;
     }
 
-    public void PokracujHru()   //metóda na pokračovanie v hre
+    public void PokracujHru()
     {
         pauzaMenu.SetActive(false);
         Time.timeScale = 1f; // obnovenie normálneho času
@@ -38,7 +38,7 @@ public class PauzaMenuManazer : MonoBehaviour
         SceneManager.LoadScene("MenuScena"); // názov scény hlavného menu
     }
 
-    public void UkonciHru() //ukončí hru v Buildnutej aplikácií
+    public void UkonciHru()
     {
         Application.Quit();
     }

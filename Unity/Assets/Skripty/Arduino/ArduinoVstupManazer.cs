@@ -4,7 +4,6 @@ using System.Threading;
 
 public class ArduinoVstupManazer : MonoBehaviour
 {
-    //verejné premenné, aby sa dali nastaviť v Unity editore, určujú z ktorého sériového portu sa má čitať a akou rýchlosťou (baudrate)
     public string nazovPortu = "/dev/cu.usbmodem1101";
     public int baudovaRychlost = 9600;
 
@@ -16,7 +15,7 @@ public class ArduinoVstupManazer : MonoBehaviour
 
     void Start()
     {
-        OtvorSpojenie();    //hneď v metóde start() sa pripájame k sériovému portu
+        OtvorSpojenie();
     }
 
     void OtvorSpojenie()
@@ -52,13 +51,13 @@ public class ArduinoVstupManazer : MonoBehaviour
                 string riadok = seriovyPort.ReadLine(); //čaká na jeden riadok ukončneý \n z Arduina(v arduino kóde Serial.print(hodnota))
                 lock (prijateData)
                 {
-                    prijateData = riadok;   //zamkneme retazeprijateData a priradíme doňho aktuálny riadok. lock sa používa preto aby sa predišlo kolíziam ked sa v Update() táto premenná zároveň číta
+                    prijateData = riadok;   //zamkneme retazec prijateData a priradíme doňho aktuálny riadok. lock sa používa preto aby sa predišlo kolíziam ked sa v Update() táto premenná zároveň číta
                 }
             }
             catch (System.TimeoutException)
             {
             }
-            catch (System.Exception e)  //ak port prestane existovať vypíše sa error
+            catch (System.Exception e)
             {
                 Debug.LogError("Chyba pri čítaní zo sériového portu: " + e.Message);
             }

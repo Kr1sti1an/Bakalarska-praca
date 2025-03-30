@@ -5,14 +5,14 @@ using UnityEngine;
 public class AIManazer : MonoBehaviour
 {
 
-    [SerializeField] //SerializeField nám zabezpečuje že s tým možem pracovať a interagovať v inspectore. aj ked je to napríklad private.
-    AutoManazer autoManazer;    //tu je referencia na skript AutoManazer. zabezpečuje základné fungovanie auta, pohyb alebo fyziku
+    [SerializeField]
+    AutoManazer autoManazer;
 
     [SerializeField]
-    LayerMask ostatneAutaLayerMaska;    //urcuje v ktorej vrstve má Unity hladať daný layer mask
+    LayerMask ostatneAutaLayerMaska;
 
     [SerializeField]
-    MeshCollider meshCollider;  //detekcia kolízie
+    MeshCollider meshCollider;
 
     RaycastHit[] raycastsHits = new RaycastHit[1];  //malé pole do ktorého sa ukladajú výsledky z Physics.BoxCastNonAlloc
     bool autoJePred = false;    //bool hodnota ktorá určuje či sa pred AI autom nachádza dalšie auto, ak sa tam nachádza napríklad hráč alebo AI auto tak AI auto stojí

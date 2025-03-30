@@ -5,21 +5,21 @@ using UnityEngine;
 public class MincaSpawner : MonoBehaviour
 {
     [SerializeField]
-    GameObject mincaPrefab; //prefab mince ktorý priradíme v unity inspectore lebo je [SerializeField]
+    GameObject mincaPrefab;
 
     [SerializeField]
-    Transform hracTransform;    //poloha hráča v hernom priestore
+    Transform hracTransform;
 
     [SerializeField]
     float intervalSpawnu = 2.0f;    //každé 2 sekundy vytvorí skript novú mincu
 
     [SerializeField]
-    float vzdialenostSpawnuPredHracom = 50.0f;  //ako daleko pred hráčom spawnne novú mincu
+    float vzdialenostSpawnuPredHracom = 50.0f;
 
     private void Start()
     {
         if (hracTransform == null)
-            hracTransform = GameObject.FindGameObjectWithTag("Player").transform;   //nájdeme hráča pomocou tagu
+            hracTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
         StartCoroutine(SpawnujMinceCO());   //spustenie korutiny na spawnovanie mincí
     }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public static class SkoreManazer //statická čiže nemôžeme vytvoriť jej inštanciu new SkoreManager(), využívame len jej public metódy
+public static class SkoreManazer
 {
     public static int AktualneSkore { get; private set; } = 0;  //hodnota sa nastavuje len v tejto triede ale čitať ju môže hocikto kto pristupuje k tejto triede
 
@@ -26,6 +26,6 @@ public static class SkoreManazer //statická čiže nemôžeme vytvoriť jej in�
 
     public static void ResetujSkore()
     {
-        AktualneSkore = 0;  //resetuje skore na 0
+        AktualneSkore = 0;
     }
 }

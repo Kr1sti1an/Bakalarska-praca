@@ -5,8 +5,8 @@ public class VstupManazer : MonoBehaviour
 {
     [SerializeField] private AutoManazer autoManazer; //referencia na AutoManazer ktorý zabezpečuje fyziku a pohyb auta
 
-    [SerializeField] private GameObject pauzaMenu;  //canvas pre pauza menu
-    private bool jePauza = false;   //uchováva stav či je hra pauznutá
+    [SerializeField] private GameObject pauzaMenu;
+    private bool jePauza = false;
 
     public static VstupManazer Instance;    // statická referencia na seba samého(singleton) aby sa z iných skriotov dalo volať napríklad VstupMManazer.Instance.xx()
 
@@ -15,7 +15,7 @@ public class VstupManazer : MonoBehaviour
     private bool arduinoForward = false;
     private bool arduinoBrake = false;
 
-    public bool useArduinoInput = true; //ak je true skript používa dáta z arduina, inak berie klasický vstup z klávesnice
+    public bool useArduinoInput = true;
 
     private void Awake()    //Awake() sa spúšta len raz a pred Start()
     {

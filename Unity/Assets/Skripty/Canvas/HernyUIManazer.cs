@@ -3,12 +3,11 @@ using TMPro;
 
 public class HernyUIManazer : MonoBehaviour
 {
-    // referencie na textové komponenty kde sa budú zobrazovať údaje
     public TMP_Text najvyssieSkoreText;
     public TMP_Text aktualneSkoreText;
     public TMP_Text casText;
 
-    private float startovaciCas;    //interná premenná kde sa uchováva čas od začatia hry
+    private float startovaciCas;
 
     void Start()
     {

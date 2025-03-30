@@ -8,24 +8,21 @@ public class AutoManazer : MonoBehaviour
     Rigidbody rb;
 
     [SerializeField]
-    Transform hernyModel;   //vizuálny model auta, napríklad pre natáčanie modelu
+    Transform hernyModel;
 
     [SerializeField]
-    MeshRenderer autoSietovyCitac;  //mesh renderer, použitý napríklad na zmenu farby svetiel pri brzdení
+    MeshRenderer autoSietovyCitac;
 
     [SerializeField]
-    VybuchManazer vybuchManazer;    //skript ktorý spracováva logiku výbuchu, auto sa rozletí na 8častí
+    VybuchManazer vybuchManazer;
 
-    //Max hodnoty pre rýchlosť a zabáčanie
     float maxOvladaciaRychlost = 2;
     float maxVpredRychlost = 30;
 
-    //Násobitele, určujú aký silný bude plyn, brzda a zatáčanie
     float rozbehNasobitel = 3;
     float brzdaNasobitel = 15;
     float volantNasobitel = 5;
 
-    // tu sa ukladá vstup od hráča X/Y os lebo Vector2
     Vector2 vstup = Vector2.zero;
 
     int _EmissionColor = Shader.PropertyToID("_EmissionColor"); //emisívna hodnota, slúži na zmenu emission color farby na svetlách, ked brzdím svietia na červeno viac

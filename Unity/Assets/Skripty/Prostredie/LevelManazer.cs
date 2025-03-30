@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelManazer : MonoBehaviour
 {
     [SerializeField]
-    GameObject[] sekciePrefaby; //pole prefabov, čiže rôznych sekcií cesty
+    GameObject[] sekciePrefaby;
 
     GameObject[] sekciePole = new GameObject[20];   //pole 20 instancií sekcií, slúži ako pool(zásobník), z ktorého vyberáme volné sekcie
 

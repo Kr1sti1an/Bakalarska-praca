@@ -64,3 +64,6 @@ void loop() {
 - Kliknite na Play
 - Po spustení hry v scéne by sa Vám malo na konzole dole vypísať: "Arduino ovládač úspešne pripojený!"
 - Užite si hru!
+
+## Youtube Video Link:
+https://youtube.com/shorts/qMUF2x0hr3g?si=o-k-hLWOig5WbyEJ
